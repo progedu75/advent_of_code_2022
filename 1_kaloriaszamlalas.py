@@ -24,3 +24,8 @@ for lista in adatbazis:
 print(f'{osszegek=}')
 print(f'max = {max(osszegek)}')
 
+rendezett = sorted(osszegek, reverse=True)
+print(f'{rendezett=}')
+elso_3_legnagyobb = rendezett[0] + rendezett[1] + rendezett[2]
+print(f'Az első három legnagyobb összesen: {elso_3_legnagyobb}')
+
