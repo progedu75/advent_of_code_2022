@@ -24,7 +24,3 @@ for lista in adatbazis:
 print(f'{osszegek=}')
 print(f'max = {max(osszegek)}')
 
-
-
-
-
