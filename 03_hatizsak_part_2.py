@@ -35,8 +35,3 @@ with open('files/03_backpack.txt', 'r', encoding='utf-8') as source:
         sum_team = 0
         elemek = set()
     print(f'Az egyes elemtípusok prioritásának összege = {sum_osszes}')
-
-
-
-        # print('')
-        # print(row)
