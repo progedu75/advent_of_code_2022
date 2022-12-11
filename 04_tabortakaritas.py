@@ -27,45 +27,47 @@ def szetvalaszto(adat):
     list_2.append(atmeneti[2])
     list_2.append(atmeneti[3])
     return list_1, list_2
-with open('files/04_camp_cleaining.txt', 'r', encoding='utf-8') as sourcefile:
+with open('files/04_camp_cleaining.txt', 'r', encoding='utf-8') as sourcefile, \
+        open('files/kimenet.txt', 'w', encoding='utf-8') as celfajl:
     for sor in sourcefile:
         sorszam += 1
     sourcefile.seek(0)
 
     for adat in sourcefile:
         parok = szetvalaszto(adat)
-        print(parok, end='\t')
-        if int(parok[0][0]) <= int(parok[1][0]):
+        print(sorted(parok), end='\t')
+        if int(parok[0][0]) < int(parok[1][0]):
             # print('true')
-            for i in parok[1]:
-                if int(i) in range(int(parok[0][0]),int(parok[0][1]) + 1):
-                    atfedes = True
-                else:
-                    atfedes = False
+            # for i in parok[1]:
+            if int(parok[1][0]) in range(int(parok[0][0]),int(parok[0][1]) + 1) and int(parok[1][1]) in range(int(parok[0][0]),int(parok[0][1]) + 1):
+                atfedes = True
+                # szamlalo += 1
+            else:
+                atfedes = False
+        elif int(parok[0][0]) == int(parok[1][0]) and int(parok[0][0]) == int(parok[0][1]):
+            if int(parok[0][0]) in range(int(parok[1][0]), int(parok[1][1]) + 1):
+                atfedes = True
+        elif int(parok[0][0]) == int(parok[1][0]) and int(parok[0][0]) != int(parok[0][1]):
+            if int(parok[0][1]) in range(int(parok[1][0]), int(parok[1][1]) + 1):
+                atfedes = True
         else:
-            for i in parok[0]:
-                if int(i) in range(int(parok[1][0]), int(parok[1][1]) + 1):
+            # for i in parok[0]:
+                if int(parok[0][0]) in range(int(parok[1][0]), int(parok[1][1]) + 1) and int(parok[0][1]) in range(int(parok[1][0]), int(parok[1][1]) + 1):
                     atfedes = True
+                    # szamlalo += 1
                 else:
                     atfedes = False
-        print(atfedes)
+        # print(atfedes)
+        print(sorted(parok), atfedes, sep='\t', file=celfajl)
+        if atfedes == True:
+            szamlalo += 1
+    print(f'{szamlalo=}')
+
 
 
 
 '''
-                if szakasz_1[0] <= szakasz_2[0]:
-                    for i in szakasz_2:
-                        if i in range(szakasz_1[0], szakasz_1[1] + 1):
-                            atfedes = True
-                        else:
-                            atfedes = False
-                else:
-                    for i in szakasz_1:
-                        if i in range(szakasz_2[0], szakasz_2[1] + 1):
-                            atfedes = True
-                        else:
-                            atfedes = False
-                print('\t', atfedes)
+                
                 if atfedes:
                     szamlalo += 1
                 szakasz_1 = []
