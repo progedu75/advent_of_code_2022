@@ -6,6 +6,8 @@ count_szakasz_2 = 0
 atfedes = False
 sorszam = 0
 szamlalo = 0
+eleme = 0
+atfedes_szama = 0
 
 
 def szetvalaszto(adat):
@@ -51,13 +53,14 @@ with open('files/04_camp_cleaining.txt', 'r', encoding='utf-8') as sourcefile:
         pars = szetvalaszto(adat)
         parok = sorted(pars)
         adatok = list(szamlista(parok))
-        print(adatok, end='\t')
+        # print(adatok, end='\t')
         for x in range(adatok[0][0], adatok[0][1]+1):
             szakasz_1.append(x)
-        print(szakasz_1, end='\t')
+        print(szakasz_1)
         for j in range(adatok[1][0], adatok[1][1] + 1):
             szakasz_2.append(j)
-        print(szakasz_2, end='\t')
+        print(szakasz_2)
+
         for a in szakasz_1:
             if a in szakasz_2:
                 count_szakasz_1 += 1
@@ -65,16 +68,21 @@ with open('files/04_camp_cleaining.txt', 'r', encoding='utf-8') as sourcefile:
             if b in szakasz_1:
                 count_szakasz_2 += 1
         if count_szakasz_1 == len(szakasz_1) or count_szakasz_2 == len(szakasz_2):
-            print("true")
+            atfedes = True
+            print(atfedes)
             szamlalo += 1
         else:
-            print("false")
+            atfedes = False
+            print(atfedes)
+        print('*************************')
+        for elem in szakasz_2:
+            if elem in szakasz_1:
+                eleme += 1
+        if eleme >= 1:
+            atfedes_szama += 1
+        eleme = 0
         szakasz_1 = []
         szakasz_2 = []
         count_szakasz_1 = 0
         count_szakasz_2 = 0
-    print(f'{szamlalo=}')
-
-
-
-
+    print(atfedes_szama)
